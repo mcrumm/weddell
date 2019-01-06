@@ -8,15 +8,14 @@ defmodule Weddell.Mixfile do
       app: :weddell,
       version: @version,
       elixir: "~> 1.5",
-      elixirc_paths: elixirc_paths(Mix.env),
-      start_permanent: Mix.env == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
       name: "Weddell",
       description: description(),
       source_url: "https://github.com/cjab/weddell",
-      docs: [main: "readme",
-             extras: ["README.md"]]
+      docs: [main: "readme", extras: ["README.md"]]
     ]
   end
 
@@ -29,7 +28,7 @@ defmodule Weddell.Mixfile do
   end
 
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
@@ -44,11 +43,12 @@ defmodule Weddell.Mixfile do
       {:uuid, "~> 1.1", only: :test},
       {:wait_for_it, "~> 1.1", only: :test},
       {:apex, "~> 1.2", only: [:test, :dev]},
+      {:goth, "~> 0.11", only: [:test, :dev]},
 
       # Dev
       {:ex_doc, "~> 0.19", only: :dev},
       {:inch_ex, ">= 0.0.0", only: :dev},
-      {:dialyxir, "~> 0.5", only: :dev, runtime: false},
+      {:dialyxir, "~> 0.5", only: :dev, runtime: false}
     ]
   end
 
@@ -60,7 +60,7 @@ defmodule Weddell.Mixfile do
     [
       maintainers: ["Chad Jablonski"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/cjab/weddell"},
+      links: %{"GitHub" => "https://github.com/cjab/weddell"}
     ]
   end
 end
